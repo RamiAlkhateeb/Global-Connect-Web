@@ -1,91 +1,59 @@
+# GlobalConnectWeb
 
-# 📘 **README.md**
+This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
 
-# HotelsAPI – Upgraded and Deployed!
+## Development server
 
-This project is a simple ASP.NET Core Web API for managing hotel data. Today, I upgraded the project, added Docker support, implemented unit testing, and successfully deployed it.
+To start a local development server, run:
 
-![image](https://github.com/RamiAlkhateeb/Hotels/blob/main/HotelsService.drawio.png)
-
-
-# Web API Architecture 
-
-![image](https://github.com/RamiAlkhateeb/Hotels/blob/main/ConceptualDiagramWebAPI.png)
-
-
----
-
-## ✅ Upgraded from .NET 5 to .NET 9
-- Used **.NET Upgrade Assistant** to migrate the project from .NET 5 to the latest .NET 9.
-- Updated NuGet packages to ensure compatibility with .NET 9.
-
----
-
-## 🐳 Added Docker Support
-- Created a **Dockerfile** to containerize the application.
-- Built and ran the Docker image locally using:
-  ```bash
-  docker build -t hotelsapi .
-  docker run -d -p 5000:80 hotelsapi
-
-
-* Access the API at `http://localhost:5000`.
-
----
-
-## 🧪 Unit Testing with xUnit
-
-* Created a separate **Unit Test project** within the solution.
-* Used **xUnit** for writing and running unit tests.
-* Verified that the API logic behaves as expected.
-
----
-
-## 🚀 Deployment
-
-* Deployed the Dockerized .NET 9 Web API to **Render/Railway/Azure** (choose the one you used).
-* Ensured successful deployment and tested with Postman.
-* Got a live URL (for example: `https://hotels-web-api-service.onrender.com/api/hotels`).
-
----
-
-## 🔧 How to Run Locally
-
-1. Clone the repository.
-2. Build the Docker image:
-
-   ```bash
-   docker build -t hotelsapi .
-   ```
-3. Run the container:
-
-   ```bash
-   docker run -d -p 5000:80 hotelsapi
-   ```
-4. Access the API at `http://localhost:5000`.
-
----
-
-## 📂 Project Structure
-
-```
-/HotelsAPI.sln
-  /HotelsAPI
-    /Controllers
-    /Models
-    /Startup.cs
-    /Program.cs
-  /HotelsAPI.UnitTests
-/Dockerfile
-/README.md
+```bash
+ng serve
 ```
 
----
+Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## 📖 Technologies
+## Code scaffolding
 
-* ASP.NET Core 9 Web API
-* xUnit (Unit Testing)
-* Docker
-* .NET Upgrade Assistant
+Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
+```bash
+ng generate component component-name
+```
+
+For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+
+```bash
+ng generate --help
+```
+
+## Building
+
+To build the project run:
+
+```bash
+ng build
+```
+
+This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+
+## Running unit tests
+
+To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+
+```bash
+ng test
+```
+
+## Running end-to-end tests
+
+For end-to-end (e2e) testing, run:
+
+```bash
+ng e2e
+```
+
+Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+
+## Additional Resources
+
+For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
