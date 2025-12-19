@@ -37,7 +37,10 @@ export class LoginComponent {
   onLogin() {
     this.authService.login(this.credentials).subscribe({
       next: () => this.router.navigate(['/search']),
-      error: (err) => alert('Login failed: ' + err.error.message)
+      error: (err) => {
+      console.error('Full HTTP Error:', err); // <--- Add this to see the real status code
+      alert('Login failed: ' + (err.error?.message || err.statusText || 'Server unreachable'));
+    }
     });
   }
 }

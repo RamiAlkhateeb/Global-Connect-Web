@@ -12,31 +12,45 @@ import { environment } from '../../../../environments/environment';
     CommonModule,
     RouterLink    // <--- STEP 3: Ensure it is listed here!
   ],
-  template: `
-    <div class="container mt-4">
-      <h3>Find a Provider</h3>
-      <div class="row g-3 mb-4">
-        <div class="col-md-5">
-          <input type="text" class="form-control" placeholder="Search by specialty..." (input)="onFilter($event)">
+  template: `<div class="container mt-4 pb-5">
+      <h3 class="mb-4">Find a Specialist</h3>
+      
+      <div class="row g-2 mb-4">
+        <div class="col-12 col-md-6">
+          <input type="text" class="form-control" placeholder="Search by specialty (e.g., Therapist)">
+        </div>
+        <div class="col-12 col-md-3">
+           <button class="btn btn-primary w-100" (click)="loadProviders()">Search</button>
         </div>
       </div>
 
       <div class="row">
-        <div *ngFor="let p of providers" class="col-md-4 mb-3">
-          <div class="card h-100">
+        <div *ngFor="let p of providers" class="col-12 col-md-6 col-lg-4 mb-3">
+          <div class="card h-100 shadow-sm border-0">
             <div class="card-body">
-              <h5 class="card-title">{{p.name}}</h5>
-              <p class="text-muted">{{p.specialty}}</p>
-              <p><strong>Rate:</strong> {{p.hourlyRateUSD | currency}}</p>
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                   <h5 class="card-title fw-bold text-primary">{{ p.name }}</h5>
+                   <h6 class="card-subtitle mb-2 text-muted">{{ p.specialty }}</h6>
+                </div>
+                <span class="badge bg-light text-dark">\${{ p.hourlyRateUSD }}/hr</span>
+              </div>
               
-              <button 
-                class="btn btn-outline-primary btn-sm" 
-                [routerLink]="['/booking', p.providerId]">
-                Book Slot
-              </button>
-
+              <p class="card-text mt-3 small">
+                <i class="bi bi-globe"></i> {{ p.languages?.join(', ') || 'English' }}
+              </p>
+              
+              <div class="d-grid mt-3">
+                <a [routerLink]="['/provider', p.providerId]" class="btn btn-outline-primary">
+                  View Availability
+                </a>
+              </div>
             </div>
           </div>
+        </div>
+
+        <div *ngIf="providers.length === 0" class="col-12 text-center text-muted mt-5">
+          <p>No providers found. Try adjusting your filters.</p>
         </div>
       </div>
     </div>
@@ -47,12 +61,17 @@ export class SearchComponent implements OnInit {
   private http = inject(HttpClient);
 
   ngOnInit() {
-    this.http.get<any>(`${environment.apiUrl}/availability/search?seekerTimezoneId=Europe/London`).subscribe(res => {
-      this.providers = res.providers;
-    });
+    this.loadProviders();
   }
 
-  onFilter(event: any) {
-    // Filter logic placeholder
+  loadProviders() {
+    // Calling the GET /api/providers/search endpoint
+    this.http.get<any>(`${environment.apiUrl}/providers`).subscribe({
+      next: (res) => {
+        // The API returns { totalResults: 45, providers: [...] }
+        this.providers = res || [];
+      },
+      error: (err) => console.error('Failed to load providers', err)
+    });
   }
 }
