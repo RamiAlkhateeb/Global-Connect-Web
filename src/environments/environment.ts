@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:7143/api' // Change to your actual backend port
+  apiUrl: 'https://globalconnect-4eom.onrender.com/api' // Change to your actual backend port
 };

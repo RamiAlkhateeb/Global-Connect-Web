@@ -27,7 +27,8 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "404.html"
             ],
             "styles": [
               "src/styles.scss"
