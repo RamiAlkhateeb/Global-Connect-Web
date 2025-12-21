@@ -22,10 +22,10 @@ jobs:
 
       - name: Build
         # Replace REPO_NAME and PROJECT_NAME
-        run: npx ng build --configuration production --base-href /Global-Connect-Web/
+        run: npx ng build --configuration production --base-href /global-connect-Web/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/global-Connect-Web/browser # Ensure this matches your build output
+          folder: dist/global-connect-Web/browser # Ensure this matches your build output
           branch: gh-pages
