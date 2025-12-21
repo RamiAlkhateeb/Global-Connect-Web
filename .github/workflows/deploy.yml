@@ -27,5 +27,5 @@ jobs:
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          folder: dist/global-connect-Web/browser # Ensure this matches your build output
+          folder: dist/global-connect-web/browser # Ensure this matches your build output
           branch: gh-pages
