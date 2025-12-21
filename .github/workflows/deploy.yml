@@ -1,12 +1,14 @@
-name: Build and Deploy
+name: Deploy to GitHub Pages
 on:
   push:
-    branches:
-      - Prod # Change this to your default branch name
+    branches: ["main"]
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
 jobs:
-  build-and-deploy:
+  build_and_deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,17 +17,24 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm install
 
       - name: Build
-        # Replace REPO_NAME and PROJECT_NAME
+        # Use your repo name for base-href
         run: npx ng build --configuration production --base-href /Global-Connect-Web/
 
-      - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
-          folder: dist/global-connect-web/browser # Ensure this matches your build output
-          branch: gh-pages
+          # Double check this path in your local 'dist' folder!
+          path: dist/global-connect-web/browser
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
