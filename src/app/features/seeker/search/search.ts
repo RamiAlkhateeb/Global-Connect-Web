@@ -96,8 +96,8 @@ export class SearchComponent implements OnInit {
   }
 
   loadProviders() {
-    this.http.get<any>(`${environment.apiUrl}/providers/search`).subscribe({
-      next: (res) => this.providers = res.providers || [],
+    this.http.get<any>(`${environment.apiUrl}/providers`).subscribe({
+      next: (res) => this.providers = res || [],
       error: (err) => console.error('Failed to load providers', err)
     });
   }
