@@ -22,7 +22,7 @@ jobs:
 
       - name: Build
         # Replace REPO_NAME and PROJECT_NAME
-        run: npx ng build --configuration production --base-href /global-connect-Web/
+        run: npx ng build --configuration production --base-href /global-connect-web/
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
