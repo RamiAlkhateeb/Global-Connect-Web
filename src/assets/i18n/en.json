@@ -1,0 +1,16 @@
+{
+  "NAV": {
+    "HOME": "Home",
+    "SEARCH": "Search",
+    "PROFILE": "Profile",
+    "SETTINGS": "Settings"
+  },
+  "SETTINGS": {
+    "TITLE": "App Settings",
+    "DARK_MODE": "Dark Mode",
+    "LANGUAGE": "Language"
+  },
+  "COMMON": {
+    "CLOSE": "Close"
+  }
+}

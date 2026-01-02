@@ -1,0 +1,67 @@
+<div class="home-container">
+  
+  <header class="header">
+    <div class="text-content">
+      <h1>Find your Specialist</h1>
+      <p>Book remote consultations with top experts instantly.</p>
+    </div>
+    
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="onSearch()" 
+        placeholder="Search by name, specialty, or country..."
+      >
+    </div>
+  </header>
+
+  <div *ngIf="isLoading" class="loader-container">
+    <div class="spinner"></div>
+    <p>Finding doctors...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-msg">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && filteredProviders.length === 0" class="empty-state">
+    <p>No specialists found matching "{{ searchTerm }}"</p>
+  </div>
+
+  <div class="provider-grid" *ngIf="!isLoading">
+    
+    <div class="provider-card" *ngFor="let provider of filteredProviders; trackBy: trackById">
+      <div class="card-header">
+        <img 
+          [src]="provider.photoUrl || 'assets/default-avatar.png'" 
+          (error)="handleImageError($event)" 
+          alt="{{ provider.name }}" 
+          class="avatar"
+        >
+        <div class="badge-container">
+          <span class="lang-badge" *ngFor="let lang of provider.languages | slice:0:2">
+            {{ lang }}
+          </span>
+          
+        </div>
+      </div>
+
+      <div class="card-body">
+        <p class="specialty">{{ provider.specialty }}</p>
+            <h3 class="name">{{ provider.name }}</h3>
+            <p class="location" *ngIf="provider.nationality">📍 {{ provider.nationality }}</p>
+        
+        <p class="bio" *ngIf="provider.bio">{{ provider.bio | slice:0:80 }}...</p>
+      </div>
+
+      <div class="card-footer">
+        <button class="book-btn" (click)="bookAppointment(provider.googleBookingUrl)" [disabled]="!provider.googleBookingUrl">
+          {{ provider.googleBookingUrl ? 'Book Appointment' : 'Not Available' }}
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

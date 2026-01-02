@@ -1,0 +1,72 @@
+<div class="profile-container">
+  
+  <header class="header">
+    <h1>Edit Profile</h1>
+    <p>Keep your details up to date for your patients.</p>
+  </header>
+
+  <div *ngIf="isLoading" class="loader">
+    <div class="spinner"></div> Loading profile...
+  </div>
+
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" formControlName="name" placeholder="Dr. Sarah Smith">
+        <div class="error" *ngIf="profileForm.get('name')?.touched && profileForm.get('name')?.invalid">
+          Name is required (min 3 chars).
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Specialty</label>
+        <input type="text" formControlName="specialty" placeholder="e.g. Cardiologist">
+      </div>
+
+      <div class="form-group">
+        <label>Nationality / Location</label>
+        <input type="text" formControlName="nationality" placeholder="e.g. Germany">
+      </div>
+
+      <div class="form-group">
+        <label>Google Calendar Link</label>
+        <input type="url" formControlName="googleBookingUrl" placeholder="https://calendar.app.google/...">
+        <div class="hint">Paste your appointment booking link here.</div>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Bio & Experience</label>
+        <textarea formControlName="bio" rows="4" placeholder="Tell patients about your experience..."></textarea>
+        <div class="char-count">{{ profileForm.get('bio')?.value?.length || 0 }} / 500</div>
+      </div>
+
+      <div class="form-group full-width">
+        <label>Languages Spoken</label>
+        <div class="chips-container">
+          <button 
+            type="button" 
+            *ngFor="let lang of allLanguages" 
+            class="chip" 
+            [class.selected]="isLanguageSelected(lang.id)"
+            (click)="toggleLanguage(lang.id)">
+            {{ lang.name }}
+            <span *ngIf="isLanguageSelected(lang.id)">✓</span>
+          </button>
+        </div>
+        <div class="error" *ngIf="profileForm.get('languageIds')?.touched && profileForm.get('languageIds')?.value?.length === 0">
+          Please select at least one language.
+        </div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn-cancel" routerLink="/home">Cancel</button>
+      <button type="submit" class="btn-save" [disabled]="profileForm.invalid || isSaving">
+        {{ isSaving ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </div>
+
+  </form>
+</div>

@@ -1,46 +1,26 @@
-// src/app/core/services/auth.service.ts
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
-import { BehaviorSubject, tap } from 'rxjs';
-import { jwtDecode } from 'jwt-decode';
+import { Observable, tap } from 'rxjs';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   private http = inject(HttpClient);
-  private apiUrl = `${environment.apiUrl}/auth`;
-  
-  // Holds current user state
-  currentUser$ = new BehaviorSubject<any>(null);
+  // Ensure this matches your .NET launchSettings.json (usually 5000 or 7000)
+  private apiUrl = 'https://localhost:7143/api/auth'; 
 
-  constructor() {
-    this.loadUserFromToken();
-  }
-
-  register(data: any) {
-    return this.http.post(`${this.apiUrl}/register`, data);
-  }
-
-  login(credentials: {email: string, password: string}) {
-    console.log('Attempting login to:', `${this.apiUrl}/login`, credentials); // <--- Add this
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
-      tap(response => {
+  loginWithGoogle(idToken: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}/google`, { idToken }).pipe(
+      tap((response: any) => {
+        // Save the JWT from your Backend
         localStorage.setItem('token', response.token);
-        this.loadUserFromToken();
+        localStorage.setItem('role', response.role);
       })
     );
   }
 
-  private loadUserFromToken() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const decoded = jwtDecode(token);
-      this.currentUser$.next(decoded);
-    }
-  }
-
   logout() {
-    localStorage.removeItem('token');
-    this.currentUser$.next(null);
+    localStorage.clear();
   }
 }

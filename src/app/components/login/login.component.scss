@@ -1,0 +1,94 @@
+.login-container {
+  min-height: 90vh; // Accounts for navbar
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: var(--bg-color, white);
+  width: 100%;
+  max-width: 450px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.brand-section {
+  background-color: var(--primary-color, #3880ff);
+  padding: 40px 20px;
+  text-align: center;
+  color: white;
+
+  .logo-icon { font-size: 3rem; margin-bottom: 10px; }
+  h1 { margin: 0; font-size: 1.8rem; letter-spacing: 1px; }
+  p { margin-top: 5px; opacity: 0.9; font-size: 0.9rem; }
+}
+
+.auth-section {
+  padding: 40px 30px;
+  text-align: center;
+
+  h2 { margin: 0; color: var(--text-color); font-size: 1.5rem; }
+  .subtitle { color: #777; font-size: 0.9rem; margin: 10px 0 30px; }
+
+  .google-btn-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  color: var(--primary-color);
+  
+  .spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(56, 128, 255, 0.2);
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+.error-msg {
+  color: #dc3545;
+  background: #f8d7da;
+  padding: 10px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-top: 20px;
+}
+
+.footer-links {
+  padding: 20px;
+  font-size: 0.8rem;
+  text-align: center;
+  border-top: 1px solid #eee;
+  color: #999;
+  
+  a { color: #999; text-decoration: none; &:hover { text-decoration: underline; } }
+  .dot { margin: 0 8px; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+// Dark mode support
+:host-context(body.dark) {
+  .login-card { background: #1e1e1e; border: 1px solid #333; }
+  h2 { color: white; }
+  .subtitle { color: #aaa; }
+  .footer-links { border-top-color: #333; }
+}

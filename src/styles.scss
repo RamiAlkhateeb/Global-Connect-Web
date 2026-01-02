@@ -1,17 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-/* src/styles.scss */
-@import "bootstrap/scss/bootstrap";
-@import "bootstrap-icons/font/bootstrap-icons";
-
-/* Mobile First Global Overrides */
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f8f9fa;
+:root {
+  --bg-color: #ffffff;
+  --text-color: #1a1a1a;
+  --primary-color: #3880ff;
+  --card-bg: #f9f9f9;
+  --nav-bg: #ffffff;
 }
 
-/* Example: Cards take full width on mobile by default */
-.card {
-  border: none;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  margin-bottom: 1rem;
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f4f4f4;
+  --primary-color: #4d8dff;
+  --card-bg: #1e1e1e;
+  --nav-bg: #1a1a1a;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background 0.3s ease;
 }

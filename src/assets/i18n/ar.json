@@ -1,0 +1,16 @@
+{
+  "NAV": {
+    "HOME": "الرئيسية",
+    "SEARCH": "بحث",
+    "PROFILE": "الملف الشخصي",
+    "SETTINGS": "الإعدادات"
+  },
+  "SETTINGS": {
+    "TITLE": "الإعدادات",
+    "DARK_MODE": "الوضع الداكن",
+    "LANGUAGE": "اللغة"
+  },
+  "COMMON": {
+    "CLOSE": "إغلاق"
+  }
+}

@@ -6,7 +6,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "global-connect-web": {
+    "RemoteConsultation": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -28,11 +28,16 @@
                 "glob": "**/*",
                 "input": "public"
               },
-              "src/404.html"
+              "src/assets"
             ],
             "styles": [
               "src/styles.scss"
-            ]
+            ],
+            "server": "src/main.server.ts",
+            "outputMode": "server",
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "production": {
@@ -62,10 +67,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "global-connect-web:build:production"
+              "buildTarget": "RemoteConsultation:build:production"
             },
             "development": {
-              "buildTarget": "global-connect-web:build:development"
+              "buildTarget": "RemoteConsultation:build:development"
             }
           },
           "defaultConfiguration": "development"
