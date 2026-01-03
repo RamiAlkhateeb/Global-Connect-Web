@@ -9,46 +9,67 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [CommonModule, RouterLink, RouterLinkActive, TranslateModule],
   template: `
     <nav class="navbar">
-      <div class="nav-container">
-        <a routerLink="/" class="logo">RemoteCare</a>
+      <div class="container">
+        <a routerLink="/home" class="logo">RemoteCare</a>
         
-        <div class="nav-links">
-          <a routerLink="/home" routerLinkActive="active">Home</a>
-          <a routerLink="/profile" routerLinkActive="active">Profile</a>
-          
-          <div class="settings-group">
-            <select (change)="changeLang($any($event.target).value)">
-              <option value="en">EN</option>
-              <option value="ar">AR</option>
-              <option value="de">DE</option>
-            </select>
-            <button (click)="toggleTheme()" class="theme-btn">🌓</button>
-          </div>
+        <div class="links">
+          <a routerLink="/home" routerLinkActive="active">
+            <span class="icon">🏠</span> Home
+          </a>
+
+          <a routerLink="/appointments" routerLinkActive="active">
+            <span class="icon">📅</span> My Bookings
+          </a>
+
+          <a routerLink="/profile" routerLinkActive="active">
+            <span class="icon">👤</span> Profile
+          </a>
+
+          <button (click)="toggleTheme()" class="theme-btn">🌓</button>
         </div>
       </div>
     </nav>
   `,
   styles: [`
-    .navbar {
-      background: var(--nav-bg);
-      border-bottom: 1px solid #eee;
-      padding: 0.5rem 1rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+    .navbar { 
+      background: var(--nav-bg); 
+      border-bottom: 1px solid #eee; 
+      padding: 0.8rem 1rem; 
+      position: sticky; top: 0; z-index: 100; 
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
+    .container { 
+      display: flex; justify-content: space-between; align-items: center; 
+      max-width: 1000px; margin: 0 auto; 
     }
-    .logo { font-weight: bold; font-size: 1.2rem; text-decoration: none; color: var(--primary-color); }
-    .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-    .nav-links a { text-decoration: none; color: var(--text-color); font-size: 0.9rem; }
-    .active { color: var(--primary-color); font-weight: 600; }
-    .settings-group { display: flex; gap: 10px; }
+    .logo { 
+      font-weight: 800; font-size: 1.3rem; 
+      color: var(--primary-color); text-decoration: none; 
+      letter-spacing: -0.5px;
+    }
+    .links { display: flex; gap: 25px; align-items: center; }
+    
+    .links a { 
+      text-decoration: none; color: var(--text-color); font-size: 0.95rem; font-weight: 500;
+      display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+    }
+    .links a:hover { color: var(--primary-color); }
+    
+    /* Active State (Blue text) */
+    .active { color: var(--primary-color) !important; }
+    
+    .theme-btn { 
+      background: none; border: none; font-size: 1.2rem; cursor: pointer; 
+      padding: 5px; border-radius: 50%; transition: background 0.2s;
+    }
+    .theme-btn:hover { background: rgba(0,0,0,0.05); }
+
+    /* Mobile Responsive tweaks */
+    @media (max-width: 600px) {
+      .links a span.icon { display: inline; } /* Show icon */
+      .links a { font-size: 0; } /* Hide text on small screens */
+      .links a span.icon { font-size: 1.4rem; } /* Make icons bigger */
+    }
   `]
 })
 export class NavbarComponent {

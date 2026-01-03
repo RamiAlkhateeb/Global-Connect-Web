@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideRouter(routes), provideClientHydration(withEventReplay()),
     provideHttpClient(withInterceptors([jwtInterceptor])),
-    
+
     importProvidersFrom(
       TranslateModule.forRoot({
         defaultLanguage: 'en',
@@ -38,7 +38,11 @@ export const appConfig: ApplicationConfig = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '539053639992-39onsi4ft5s8s2164ms5d43rn765jd9i.apps.googleusercontent.com' // <--- REPLACE THIS
+              '539053639992-39onsi4ft5s8s2164ms5d43rn765jd9i.apps.googleusercontent.com', // <--- REPLACE THIS
+             {
+                // ASK FOR CALENDAR PERMISSION
+                scopes: 'https://www.googleapis.com/auth/calendar.events.readonly'
+              }
             )
           }
         ],

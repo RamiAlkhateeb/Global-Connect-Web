@@ -1,0 +1,38 @@
+<div class="container">
+  <header class="header">
+    <div>
+      <h1>My Appointments</h1>
+      <p>Track your consultation history.</p>
+    </div>
+    <button class="btn-sync" (click)="syncNow()" [disabled]="isSyncing">
+      <span *ngIf="isSyncing" class="spinner"></span>
+      {{ isSyncing ? 'Syncing...' : '🔄 Sync from Google' }}
+    </button>
+  </header>
+
+  <div *ngIf="appointments.length === 0 && !isLoading" class="empty-state">
+    <p>No appointments found.</p>
+    <small>Booked a session recently? Click "Sync from Google" to update this list.</small>
+  </div>
+
+  <div class="appt-list">
+    <div class="appt-card" *ngFor="let appt of appointments">
+      <div class="date-box">
+        <span class="day">{{ appt.startTime | date:'d' }}</span>
+        <span class="month">{{ appt.startTime | date:'MMM' }}</span>
+      </div>
+      
+      <div class="details">
+        <h3>{{ appt.providerName }}</h3>
+        <p class="specialty">{{ appt.providerSpecialty }}</p>
+        <p class="time">
+          🕒 {{ appt.startTime | date:'shortTime' }} - {{ appt.endTime | date:'shortTime' }}
+        </p>
+      </div>
+
+      <div class="status" [class.confirmed]="appt.status === 'Confirmed'">
+        {{ appt.status }}
+      </div>
+    </div>
+  </div>
+</div>
