@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit {
           next: (profile) => {
             if (profile) {
               this.profileForm.patchValue({
-                displayName: profile.name,
+                name: profile.name,
                 specialty: profile.specialty,
                 nationality: profile.nationality,
                 bio: profile.bio,
