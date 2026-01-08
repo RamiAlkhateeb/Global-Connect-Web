@@ -77,8 +77,5 @@ export class NavbarComponent {
     document.body.classList.toggle('dark');
   }
 
-  changeLang(lang: string) {
-    // We'll connect this to your TranslateService
-    console.log("Language changed to:", lang);
-  }
+
 }
