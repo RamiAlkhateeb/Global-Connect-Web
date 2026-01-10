@@ -1,16 +1,24 @@
 {
   "NAV": {
     "HOME": "Home",
-    "SEARCH": "Search",
+    "APPOINTMENTS": "My Bookings",
     "PROFILE": "Profile",
-    "SETTINGS": "Settings"
+    "LOGIN": "Login"
   },
-  "SETTINGS": {
-    "TITLE": "App Settings",
-    "DARK_MODE": "Dark Mode",
-    "LANGUAGE": "Language"
+  "HOME": {
+    "TITLE": "Find your Specialist",
+    "SUBTITLE": "Book remote consultations with top experts instantly.",
+    "SEARCH_PLACEHOLDER": "Search by name, specialty, or country...",
+    "BOOK_BTN": "Book Appointment",
+    "NOT_AVAILABLE": "Not Available"
   },
-  "COMMON": {
-    "CLOSE": "Close"
+  "APPT": {
+    "TITLE": "My Appointments",
+    "SYNC_BTN": "Sync from Google",
+    "EMPTY": "No appointments found."
+  },
+  "PROFILE": {
+    "TITLE": "Edit Profile",
+    "SAVE": "Save Changes"
   }
 }

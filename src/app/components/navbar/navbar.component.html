@@ -1,1 +1,21 @@
-<p>navbar.component works!</p>
+<nav class="navbar">
+      <div class="container">
+        <a routerLink="/home" class="logo">RemoteCare</a>
+        
+        <div class="links">
+          <a routerLink="/home" routerLinkActive="active">
+             <span class="icon">🏠</span> 
+             <span class="text">{{ 'NAV.HOME' | translate }}</span>
+          </a>
+          
+          <a routerLink="/appointments" routerLinkActive="active">
+             <span class="icon">📅</span> 
+             <span class="text">{{ 'NAV.APPOINTMENTS' | translate }}</span>
+          </a>
+
+          <button (click)="toggleLang()" class="lang-btn">
+            {{ currentLang === 'en' ? '🇨🇦 EN' : '🇸🇦 AR' }}
+          </button>
+        </div>
+      </div>
+    </nav>

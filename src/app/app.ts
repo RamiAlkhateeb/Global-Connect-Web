@@ -3,6 +3,7 @@ import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { filter } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { LanguageService } from './core/services/language.service';
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -20,6 +21,7 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class App {
+  private langService = inject(LanguageService); // <--- Injecting it triggers the constructor logic
   showNavbar = true;
   private router = inject(Router);
 

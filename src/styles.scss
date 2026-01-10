@@ -22,3 +22,30 @@ body {
   color: var(--text-color);
   transition: background 0.3s ease;
 }
+
+
+/* --- RTL Support for Arabic --- */
+html[dir="rtl"] {
+  font-family: 'Tahoma', 'Segoe UI', sans-serif; /* Arabic fonts look better here */
+  
+  /* FLIP ICONS: Sometimes arrows need to point the other way */
+  .arrow-icon { transform: scaleX(-1); }
+}
+
+/* --- Universal CSS Logic (Best Practice) --- */
+/* Instead of 'margin-left', use 'margin-inline-start' */
+/* Instead of 'margin-right', use 'margin-inline-end' */
+
+.nav-links {
+  gap: 20px; /* Gap handles RTL automatically in Flexbox! */
+}
+
+/* Example: If you had margin-right: 10px, change it to: */
+.some-element {
+  margin-inline-end: 10px; 
+}
+
+/* Example: If you had text-align: left, change it to: */
+.some-text {
+  text-align: start; 
+}
